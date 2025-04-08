@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dental System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Resetting body margin and padding for cleaner layout */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Overall Body */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f9f9;
+        color: #2b2d42;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      }
+
+      /* Header Section */
+      .header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding: 30px 0;
+      }
+
+      .header h1 {
+        font-size: 50px;
+        font-weight: 900;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Card Styling */
+      .card {
+        background: linear-gradient(45deg, #ffffff, #f4f7fa);
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12),
+          0 4px 6px rgba(0, 0, 0, 0.06);
+        padding: 25px;
+        margin: 15px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1),
+          0 4px 10px rgba(0, 0, 0, 0.06);
+        background-color: #f1f6f9;
+      }
+
+      .card h5 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #34495e;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+      }
+
+      .card:hover h5 {
+        color: #e74c3c;
+      }
+
+      /* Modal Styling */
+      .modal-content {
+        border-radius: 12px;
+        background: #fff;
+        border: none;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-header {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 20px 30px;
+        border-radius: 12px 12px 0 0;
+        border-bottom: none;
+      }
+
+      .modal-title {
+        font-size: 26px;
+        font-weight: 700;
+      }
+
+      .btn-close {
+        color: #fff;
+        opacity: 0.8;
+      }
+
+      .btn-close:hover {
+        opacity: 1;
+      }
+
+      .modal-body {
+        padding: 30px;
+        font-size: 16px;
+      }
+
+      /* Form Inputs */
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 10px;
+        background-color: #f1f6f9;
+        border: 1px solid #dfe3e6;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #e74c3c;
+        box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+      }
+
+      /* Button Styling */
+      button[type="submit"] {
+        background-color: #e74c3c;
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #c0392b;
+      }
+
+      button[type="submit"]:active {
+        transform: scale(0.98);
+      }
+
+      /* Button Styles for Modals */
+      .modal-footer button {
+        background-color: #e74c3c;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .modal-footer button:hover {
+        background-color: #c0392b;
+      }
+
+      .modal-footer button:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+      }
+
+      /* Hover Effects for Cards */
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        background-color: #f9fafb;
+      }
+
+      .card h5 {
+        color: #34495e;
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+      .card:hover h5 {
+        color: #e74c3c;
+      }
+
+      /* Mobile Responsive Adjustments */
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 40px;
+        }
+
+        .modal-dialog {
+          max-width: 100%;
+          margin: 20px;
+        }
+
+        .modal-body {
+          padding: 20px;
+        }
+
+        .form-label {
+          font-size: 14px;
+        }
+
+        .card {
+          padding: 20px;
+          margin: 10px 0;
+        }
+
+        button[type="submit"] {
+          padding: 12px;
+        }
+      }
+
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Performance Optimization: Avoid Overuse of Animation */
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card,
+      .modal-content {
+        animation: slideIn 0.5s ease-out;
+      }
+      .home-btn {
+        display: block;
+        width: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .home-btn:hover {
+        background-color: #0056b3;
+      }
+      /* Your existing styles remain unchanged */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Dental System</h1>
+      </div>
+
+      <!-- Feedback Message -->
+      <div class="mt-3">
+        <div
+          class="alert alert-success"
+          style="display: none"
+          id="successMessage"
+        ></div>
+        <div
+          class="alert alert-danger"
+          style="display: none"
+          id="errorMessage"
+        ></div>
+      </div>
+
+      <div class="row">
+        <!-- Add Patient -->
+        <div class="col-md-4">
+          <div
+            id="b1"
+            class="card text-center p-4"
+            role="button"
+            data-bs-toggle="modal"
+            data-bs-target="#addPatientModal"
+          >
+            <h5>Add Patient</h5>
+          </div>
+        </div>
+        <!-- Update Patient -->
+        <div class="col-md-4">
+          <div
+            id="b2"
+            class="card text-center p-4"
+            role="button"
+            data-bs-toggle="modal"
+            data-bs-target="#updatePatientModal"
+          >
+            <h5>Update Patient</h5>
+          </div>
+        </div>
+        <!-- Delete Patient -->
+        <div class="col-md-4">
+          <div
+            id="b3"
+            class="card text-center p-4"
+            role="button"
+            data-bs-toggle="modal"
+            data-bs-target="#deletePatientModal"
+          >
+            <h5>Delete Patient</h5>
+          </div>
+        </div>
+        <!-- Search Patient -->
+        <div class="col-md-4">
+          <div
+            id="b4"
+            class="card text-center p-4"
+            role="button"
+            data-bs-toggle="modal"
+            data-bs-target="#searchPatientModal"
+          >
+            <h5>Search Patient</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Patient Modal -->
+    <div
+      class="modal fade"
+      id="addPatientModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add New Patient</h5>
+            <button
+              id="b5"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="addPatientForm" action="/addPatient" method="POST">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  name="age"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="contact_info" class="form-label"
+                  >Contact Info</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="contact_info"
+                  name="contact_info"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea
+                  class="form-control"
+                  id="address"
+                  name="address"
+                  rows="2"
+                  required
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="diagnostic_data" class="form-label"
+                  >Diagnostic Data</label
+                >
+                <textarea
+                  class="form-control"
+                  id="diagnostic_data"
+                  name="diagnostic_data"
+                  rows="3"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Patient Modal -->
+    <div
+      class="modal fade"
+      id="updatePatientModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Patient Record</h5>
+            <button
+              id="b6"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              id="updatePatientForm"
+              action="/updatePatient"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <div class="mb-3">
+                <label for="patient_id" class="form-label">Patient ID</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="patient_id"
+                  name="patient_id"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updated_diagnostic_data" class="form-label"
+                  >Updated Diagnostic Data</label
+                >
+                <textarea
+                  class="form-control"
+                  id="updated_diagnostic_data"
+                  name="diagnostic_data"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="patient-report" class="form-label"
+                  >Upload Report</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="patient-report"
+                  name="image"
+                  accept="image/*"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100" id="t0">
+                Update
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Patient Modal -->
+    <div
+      class="modal fade"
+      id="deletePatientModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Patient</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="deletePatientForm" action="/deletePatient" method="POST">
+              <div class="mb-3">
+                <label for="delete_patient_id" class="form-label"
+                  >Patient ID</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="delete_patient_id"
+                  name="patient_id"
+                  required
+                />
+              </div>
+              <p class="text-danger">
+                Are you sure you want to delete this patient? This action cannot
+                be undone.
+              </p>
+              <button type="submit" class="btn btn-danger w-100" id="d0">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Search Patient Modal -->
+    <div
+      class="modal fade"
+      id="searchPatientModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search Patient</h5>
+            <button
+              id="b7"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/searchPatient" method="POST">
+              <div class="mb-3">
+                <input
+                  id="b8"
+                  type="number"
+                  name="patient_id"
+                  placeholder="Enter Patient ID"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button id="b9" type="submit" class="btn btn-primary w-100">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="/dashboard" class="home-btn">Home</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Display success or error messages after form submission
+      const urlParams = new URLSearchParams(window.location.search);
+      const message = urlParams.get("message");
+      const error = urlParams.get("error");
+
+      if (message) {
+        document.getElementById("successMessage").textContent = message;
+        document.getElementById("successMessage").style.display = "block";
+      }
+
+      if (error) {
+        document.getElementById("errorMessage").textContent = error;
+        document.getElementById("errorMessage").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #333;
+    }
+
+    /* Login Card */
+    .login-container {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .login-container h2 {
+      font-size: 2rem;
+      color: #2c5364;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-container label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #555;
+      text-align: left;
+    }
+
+    .login-container input {
+      padding: 0.8rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .login-container input:focus {
+      border-color: #2c5364;
+      box-shadow: 0 0 5px rgba(44, 83, 100, 0.5);
+    }
+
+    .login-container button {
+      background: #2c5364;
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-container button:hover {
+      background: #203a43;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 500px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Fade-In Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Container -->
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? Contact your administrator.</p>
+  </div>
+</body>
+</html>

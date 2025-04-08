@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        color: #333;
+      }
+
+      /* Menu Ribbon */
+      .menu-ribbon {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #2c5364;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+
+      .menu-ribbon .menu-button {
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .menu-ribbon .menu-button:hover {
+        color: #ccc;
+      }
+
+      .menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        right: 2rem;
+        background: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .menu-dropdown a {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        color: #333;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .menu-dropdown a:hover {
+        background: #ddd;
+      }
+
+      /* Dashboard Container */
+      .dashboard-container {
+        margin-top: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 1200px;
+        text-align: center;
+      }
+
+      /* Title */
+      .dashboard-container h1 {
+        width: 100%;
+        color: #2c5364;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      /* Individual Dashboard Card */
+      .dashboard-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: 280px;
+        height: 180px;
+        cursor: pointer;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-10px);
+        background: linear-gradient(135deg, #203a43, #2c5364);
+        color: #fff;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .dashboard-card i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+        color: #2c5364;
+        transition: color 0.3s ease;
+      }
+
+      .dashboard-card:hover i {
+        color: #fff;
+      }
+
+      .dashboard-card h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .dashboard-card {
+          width: 45%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .dashboard-card {
+          width: 100%;
+        }
+      }
+    </style>
+    <script>
+      // Toggle Menu Dropdown
+      function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Logout Functionality
+      function logout() {
+        window.location.href = "logout";
+      }
+    </script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Menu Ribbon -->
+    <div class="menu-ribbon">
+      <span class="menu-button" onclick="toggleMenu()">&#9776;</span>
+      <div id="menuDropdown" class="menu-dropdown">
+        <a id="c1" href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      <h1>Admin Dashboard</h1>
+
+      <!-- Add/Manage Patients -->
+      <div
+        id="c2"
+        class="dashboard-card"
+        onclick="location.href='add_manage_patients'"
+      >
+        <i class="fas fa-user-plus"></i>
+        <h2>Add/Manage Patients</h2>
+      </div>
+
+      <!-- View Patient Records -->
+      <!-- <div
+        class="dashboard-card"
+        onclick="location.href='view_patient_records'"
+      >
+        <i class="fas fa-file-medical-alt"></i>
+        <h2>View Patient Records</h2>
+      </div> -->
+      <form
+        id="c3"
+        class="dashboard-card"
+        action="/view_patient_records"
+        method="GET"
+      >
+        <button
+          id="c4"
+          type="submit"
+          style="
+            all: unset;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: block;
+          "
+        >
+          <i class="fas fa-file-medical-alt"></i>
+          <h2>View Patient Records</h2>
+        </button>
+      </form>
+
+      <!-- Share Patient Record Card -->
+      <div
+        id="c5"
+        class="dashboard-card"
+        onclick="location.href='share_patient_record.html'"
+      >
+        <i class="fas fa-share-alt"></i>
+        <h2>Download Patient Record</h2>
+      </div>
+
+      <!-- Manage Appointments -->
+      <div
+        id="c6"
+        class="dashboard-card"
+        onclick="location.href='manage_appointments'"
+      >
+        <i class="fas fa-calendar-check"></i>
+        <h2>Manage Appointments</h2>
+      </div>
+
+      <!-- Generate/Manage Invoices -->
+      <!-- <div
+        id="c7"
+        class="dashboard-card"
+        onclick="location.href='manage_invoices'"
+      >
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h2>Manage Invoices</h2>
+      </div> -->
+
+      <!-- Manage Documents -->
+      <!-- <div
+        id="c8"
+        class="dashboard-card"
+        onclick="location.href='manage_documents'"
+      >
+        <i class="fas fa-folder-open"></i>
+        <h2>Manage Documents</h2>
+      </div> -->
+    </div>
+  </body>
+</html>

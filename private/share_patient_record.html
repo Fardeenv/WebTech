@@ -1,0 +1,227 @@
+<!-- Share Patient Modal -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        color: #333;
+      }
+
+      /* Menu Ribbon */
+      .menu-ribbon {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #2c5364;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+
+      .menu-ribbon .menu-button {
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .menu-ribbon .menu-button:hover {
+        color: #ccc;
+      }
+
+      .menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        right: 2rem;
+        background: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .menu-dropdown a {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        color: #333;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+
+      .menu-dropdown a:hover {
+        background: #ddd;
+      }
+
+      /* Dashboard Container */
+      .dashboard-container {
+        margin-top: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 1200px;
+        text-align: center;
+      }
+
+      /* Title */
+      .dashboard-container h1 {
+        width: 100%;
+        color: #2c5364;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      /* Individual Dashboard Card */
+      .dashboard-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        width: 280px;
+        height: 180px;
+        cursor: pointer;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-10px);
+        background: linear-gradient(135deg, #203a43, #2c5364);
+        color: #fff;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      .dashboard-card i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+        color: #2c5364;
+        transition: color 0.3s ease;
+      }
+
+      .dashboard-card:hover i {
+        color: #fff;
+      }
+
+      .dashboard-card h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .dashboard-card {
+          width: 45%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .dashboard-card {
+          width: 100%;
+        }
+      }
+      .main-cont {
+        margin-top: 10%;
+        background-color: white;
+        padding: 2% 5% 5% 5%;
+        border-radius: 25px;
+      }
+      h3 {
+        text-align: center;
+        padding-bottom: 25px;
+      }
+
+      form {
+        align-items: center;
+      }
+
+      button {
+        align-items: center;
+      }
+      #sharePatientForm .btn {
+        display: block;
+        margin: 0 auto;
+        background-color: blue;
+        color: white;
+        margin-top: 5px;
+        padding: 0px 5px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-cont">
+      <div
+        class="modal fade"
+        id="sharePatientModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">
+                Share Patient Details
+              </h3>
+
+              <div class="modal-body">
+                <!-- Update form to POST to /sharePatient -->
+                <form
+                  id="sharePatientForm"
+                  method="post"
+                  action="/sharePatient"
+                >
+                  <div class="mb-3">
+                    <label for="patient_id" class="form-label"
+                      >Patient ID</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="patient_id"
+                      name="patient_id"
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" class="btn btn-primary home-btn">
+                    Search
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

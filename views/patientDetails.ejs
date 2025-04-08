@@ -1,0 +1,258 @@
+<!-- WITH IMAGE -->
+<!-- patientDetails.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patient Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      }
+      .patient-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .patient-field {
+        margin: 10px 0;
+      }
+      .label {
+        font-weight: bold;
+        color: #555;
+        min-width: 120px;
+        display: inline-block;
+      }
+      .report-image {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .report-image img {
+        max-width: 100%;
+        max-height: 500px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .no-image {
+        color: #666;
+        font-style: italic;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #0066cc;
+        text-decoration: none;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .main-cont {
+        background-color: white;
+        padding: 2%;
+        border-radius: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .download-btn {
+        display: block;
+        margin: 20px auto; /* Center align with vertical spacing */
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .download-btn:hover {
+        background-color: #45a049;
+      }
+
+      .search-btn {
+        display: block;
+        margin: 20px auto; /* Center align with vertical spacing */
+        background-color: #009dff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .search-btn:hover {
+        background-color: #007ac6;
+      }
+
+      form {
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-cont">
+      <h1>Patient Details</h1>
+      <div class="patient-card">
+        <div class="patient-field">
+          <span class="label">Patient ID:</span>
+          <span><%= patient.patient_id %></span>
+        </div>
+        <div class="patient-field">
+          <span class="label">Name:</span>
+          <span><%= patient.name %></span>
+        </div>
+        <div class="patient-field">
+          <span class="label">Age:</span>
+          <span><%= patient.age %></span>
+        </div>
+        <div class="patient-field">
+          <span class="label">Contact Info:</span>
+          <span><%= patient.contact_info %></span>
+        </div>
+        <div class="patient-field">
+          <span class="label">Address:</span>
+          <span><%= patient.address %></span>
+        </div>
+        <div class="patient-field">
+          <span class="label">Diagnostic Data:</span>
+          <span><%= patient.diagnostic_data %></span>
+        </div>
+
+        <!-- Report Image Section -->
+        <div class="report-image">
+          <h3>Patient Report</h3>
+          <% if (patient.imageUrl) { %>
+          <img src="<%= patient.imageUrl %>" alt="Patient Report" />
+          <div class="patient-field">
+            <span class="label">Report File:</span>
+            <span><%= patient.report.name %></span>
+          </div>
+          <% } else { %>
+          <p class="no-image">No report image available</p>
+          <% } %>
+        </div>
+      </div>
+      <!-- <a href="/add_manage_patients" class="back-link">Back to Search</a>
+ 
+     <button href="/add_manage_patients" class="searchb-tn">Back to Search</button> -->
+
+      <button onclick="location.href='/dashboard'" class="search-btn">
+        DashBoard
+      </button>
+      <!-- Add this button just before the back link -->
+      <form
+        action="/downloadPatientReport"
+        method="POST"
+        style="margin-top: 20px"
+      >
+        <input
+          type="hidden"
+          name="patient_id"
+          value="<%= patient.patient_id %>"
+        />
+        <button type="submit" class="download-btn">
+          Download Patient Report (PDF)
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
+
+<!-- ONLY TEXT -->
+<!-- <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Patient Details</title>
+   <style>
+     body {
+       font-family: Arial, sans-serif;
+       background-color: #f4f4f4;
+       margin: 0;
+       padding: 20px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+     }
+     .container {
+       background: #fff;
+       padding: 20px;
+       border-radius: 10px;
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+       width: 500px;
+     }
+     .header {
+       text-align: center;
+       margin-bottom: 20px;
+     }
+     .header h1 {
+       color: #333;
+     }
+     .table {
+       width: 100%;
+       border-collapse: collapse;
+     }
+     .table td {
+       padding: 10px;
+       border: 1px solid #ddd;
+     }
+     .table .key {
+       background-color: #f8f9fa;
+       font-weight: bold;
+       color: #555;
+     }
+     .table .value {
+       background-color: #fff;
+       color: #333;
+     }
+   </style>
+ </head>
+ <body>
+   <div class="container">
+     <div class="header">
+       <h1>Patient Details</h1>
+     </div>
+     <table class="table">
+       <tr>
+         <td class="key">Patient ID</td>
+         <td class="value"><%= patient.patient_id %></td>
+       </tr>
+       <tr>
+         <td class="key">Name</td>
+         <td class="value"><%= patient.name %></td>
+       </tr>
+       <tr>
+         <td class="key">Age</td>
+         <td class="value"><%= patient.age %></td>
+       </tr>
+       <tr>
+         <td class="key">Contact Info</td>
+         <td class="value"><%= patient.contact_info %></td>
+       </tr>
+       <tr>
+         <td class="key">Address</td>
+         <td class="value"><%= patient.address %></td>
+       </tr>
+       <tr>
+         <td class="key">Diagnostic Data</td>
+         <td class="value"><%= patient.diagnostic_data %></td>
+       </tr>
+     </table>
+ 
+     <button>DOWNLOAD</button>
+   </div>
+ </body>
+ </html> -->

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Details</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      h2 {
+        text-align: center;
+        color: white;
+        margin: 20px 0;
+      }
+
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #2c5364;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .home-btn {
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .home-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Appointment Details</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment ID</th>
+          <th>Patient ID</th>
+          <th>Doctor ID</th>
+          <th>Treatment</th>
+          <th>Date</th>
+          <th>Cost</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (appointments.length > 0) { %> <%
+        appointments.forEach((appointment) => { %>
+        <tr>
+          <td><%= appointment.appointment_id %></td>
+          <td><%= appointment.patient_id %></td>
+          <td><%= appointment.doctor_id %></td>
+          <td><%= appointment.treatment %></td>
+          <td><%= new Date(appointment.date).toDateString() %></td>
+          <td><%= appointment.cost %></td>
+          <td><%= appointment.email %></td>
+        </tr>
+        <% }) %> <% } else { %>
+        <tr>
+          <td colspan="7">No appointments found.</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <a href="/dashboard" class="home-btn">Dashboard</a>
+  </body>
+</html>

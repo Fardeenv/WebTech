@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Details</title>
+    <style>
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .home-btn {
+        display: block;
+        width: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .home-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Appointment Details</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment ID</th>
+          <th>Patient ID</th>
+          <th>Doctor ID</th>
+          <th>Treatment</th>
+          <th>Date</th>
+          <th>Cost</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentTableBody"></tbody>
+    </table>
+
+    <a href="/dashboard" class="home-btn">Home</a>
+
+    <script>
+      async function fetchAppointments() {
+        const patientId = new URLSearchParams(window.location.search).get(
+          "patient_id"
+        );
+
+        if (!patientId) {
+          alert("No patient ID provided.");
+          return;
+        }
+
+        try {
+          const response = await fetch("/searchappointment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ patient_id: patientId }),
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            alert(errorText);
+            return;
+          }
+
+          const appointments = await response.json(); // Parse JSON response
+          const tableBody = document.getElementById("appointmentTableBody");
+          tableBody.innerHTML = ""; // Clear any existing rows
+
+          // Populate the table with appointment data
+          appointments.forEach((appointment) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${appointment.appointment_id}</td>
+        <td>${appointment.patient_id}</td>
+        <td>${appointment.doctor_id}</td>
+        <td>${appointment.treatment}</td>
+        <td>${new Date(appointment.date).toDateString()}</td>
+        <td>${appointment.cost}</td>
+        <td>${appointment.email}</td>
+      `;
+            tableBody.appendChild(row);
+          });
+        } catch (err) {
+          console.error("Error fetching appointments:", err);
+          alert("Failed to fetch appointments.");
+        }
+      }
+
+      fetchAppointments();
+    </script>
+  </body>
+</html>

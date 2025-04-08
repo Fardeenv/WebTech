@@ -1,0 +1,123 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark gradient background */
+    color: #333;
+  }
+  
+  /* Container for the Login Card */
+  .login-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .login-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Heading */
+  .login-form h2 {
+    margin-bottom: 1rem;
+    color: #2c5364;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  
+  /* Input Fields */
+  .input-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .input-container input:focus {
+    border-color: #2c5364;
+    box-shadow: 0 0 5px rgba(44, 83, 100, 0.5);
+    outline: none;
+  }
+  
+  /* Submit Button */
+  .login-btn {
+    background: #2c5364;
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background: #203a43;
+    box-shadow: 0 5px 15px rgba(44, 83, 100, 0.4);
+  }
+  
+  /* Error/Success Message */
+  .message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .message.success {
+    color: #28a745;
+  }
+  
+  .message.error {
+    color: #dc3545;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .login-container {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .login-form h2 {
+      font-size: 1.5rem;
+    }
+  
+    .input-container input,
+    .login-btn {
+      font-size: 0.9rem;
+    }
+ }

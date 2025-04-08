@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Details</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .main-cont {
+        margin: 5% auto;
+        width: 80%;
+        max-width: 1200px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        color: #2c5364;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #2c5364;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .home-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .home-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-cont">
+      <h2>Patient Details</h2>
+
+      <table>
+        <tr>
+          <th>Patient ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Contact Info</th>
+          <th>Address</th>
+          <th>Diagnostic Data</th>
+        </tr>
+        <tr>
+          <td id="patient_id"></td>
+          <td id="name"></td>
+          <td id="age"></td>
+          <td id="contact_info"></td>
+          <td id="address"></td>
+          <td id="diagnostic_data"></td>
+        </tr>
+      </table>
+
+      <a href="/dashboard" class="home-btn" id="t9">Home</a>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      document.getElementById("patient_id").textContent =
+        urlParams.get("patient_id");
+      document.getElementById("name").textContent = urlParams.get("name");
+      document.getElementById("age").textContent = urlParams.get("age");
+      document.getElementById("contact_info").textContent =
+        urlParams.get("contact_info");
+      document.getElementById("address").textContent = urlParams.get("address");
+      document.getElementById("diagnostic_data").textContent =
+        urlParams.get("diagnostic_data");
+    </script>
+  </body>
+</html>

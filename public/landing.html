@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dental Management System</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      .landing-container {
+        min-height: 100vh;
+        /* background: linear-gradient(to bottom, #f0f7ff, #ffffff); */
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .content-box {
+        max-width: 1200px;
+        width: 100%;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+      }
+
+      .left-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .right-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        color: #1a365d;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #4a5568;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .login-btn {
+        background-color: #2563eb;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-btn:hover {
+        background-color: #1d4ed8;
+      }
+
+      .dental-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .content-box {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .left-content {
+          align-items: center;
+        }
+
+        .dental-image {
+          max-width: 100%;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      body {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      }
+      p {
+        align-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="landing-container">
+      <div class="content-box">
+        <div class="left-content">
+          <h1>DentCare Management System</h1>
+
+          <p>
+            Streamline your dental practice with our comprehensive management
+            solution
+          </p>
+
+          <!-- <button class="login-btn" href="login.html">Login to Dashboard</button> -->
+          <button class="login-btn" onclick="location.href='login.html'">
+            Login to Dashboard
+          </button>
+        </div>
+        <div class="right-content">
+          <img
+            src="./landing-image.jpeg"
+            alt="Dental Care Illustration"
+            class="dental-image"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
