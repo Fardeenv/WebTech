@@ -48,13 +48,15 @@ async function sendEmail(to, subject, html) {
   }
 }
 
-// MongoDB Atlas Connection
+// MongoDB Atlas URI (keep this as it is if it's working)
 const dbURI =
   "mongodb+srv://tarunbagewadi1999:WTcoursePRO@dental.bnemx.mongodb.net/?retryWrites=true&w=majority&appName=Dental";
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => console.log("MongoDB Atlas connected successfully!"));
+
+// Modern connection syntax — no deprecated options
+mongoose
+  .connect(dbURI)
+  .then(() => console.log("MongoDB Atlas connected successfully!"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // Set views directory
