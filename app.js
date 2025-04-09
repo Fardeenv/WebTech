@@ -13,7 +13,8 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 
 const app = express();
-const PORT = 3000;
+const HOST = "0.0.0.0"; // required for cloud platforms like Render
+const PORT = process.env.PORT || 3000;
 
 const nodemailer = require("nodemailer");
 
@@ -888,6 +889,6 @@ app.post("/share_patient_record", async (req, res) => {
 });
 
 // Start the Server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
 });
