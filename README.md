@@ -2,7 +2,7 @@
 
 **Dentcare** is a web application built using Node.js, Express, and MongoDB, designed for managing dental appointments. The application allows patients to book appointments and provides an interface for clinic staff to manage these appointments.
 
-**Hosted on Render:** [Visit Dentcare Live](https://your-render-link.onrender.com)
+**Hosted on Render:** [Visit Dentcare Live](https://dentcare-9wcj.onrender.com)
 
 ---
 
@@ -58,7 +58,7 @@ Dentcare/
 ## Live Deployment
 
 Dentcare is hosted on **Render**.  
-Access the live application here: [https://your-render-link.onrender.com](https://your-render-link.onrender.com)
+Access the live application here: [https://dentcare-9wcj.onrender.com/](https://dentcare-9wcj.onrender.com/)
 
 ---
 
