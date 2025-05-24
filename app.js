@@ -49,8 +49,7 @@ async function sendEmail(to, subject, html) {
 }
 
 // MongoDB Atlas URI (keep this as it is if it's working)
-const dbURI =
-  "mongodb+srv://tarunbagewadi1999:WTcoursePRO@dental.bnemx.mongodb.net/?retryWrites=true&w=majority&appName=Dental";
+const dbURI = "mongodb+srv://Fardeen:mangodb@fardeen.urt3v65.mongodb.net/";
 
 // Modern connection syntax — no deprecated options
 mongoose
